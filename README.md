@@ -5,7 +5,7 @@ Simple wrapper / helper method for getting data from a different node in Firebas
 
 ## Installation
 
-  (add npm info)
+  `npm install fire-grabber`
 
 ## Usage
 The retrieve method accepts two arguments that should be valid firebase paths. 
