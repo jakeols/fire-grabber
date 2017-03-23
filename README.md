@@ -1,4 +1,5 @@
 Fire Grabber
+[![Build Status](https://travis-ci.org/jakeols/fire-grabber.svg?branch=master)](https://travis-ci.org/jakeols/fire-grabber)
 =========
 
 Simple wrapper / helper method for getting data from a different node in Firebase
