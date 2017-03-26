@@ -24,4 +24,21 @@ fireGrabber.retrieve = function (firstNode, secondNode) {
 });
 };
 
+fireGrabber.retrieveWithArr = function(node, arr) {
+  this.node = node;
+  this.arr = arr;
+  var database = firebase.database();
+  var info = [];
+  this.arr.map(function(item) {
+    database.ref(this.node).child(item).once('value').then(function(snapshot) {
+      var infoObject = snapshot.val();
+      if (infoObject) {
+        info.push(infoObject);
+      }
+    });
+  }, this);
+  return info;
+
+}
+
 module.exports = fireGrabber;
