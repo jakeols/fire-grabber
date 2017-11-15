@@ -1,6 +1,6 @@
 {
   "name": "fire-grabber",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple wrapper for getting data from a different node in Firebase",
   "main": "index.js",
   "scripts": {
