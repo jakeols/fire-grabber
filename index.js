@@ -8,36 +8,41 @@ var fireGrabber = {
 };
 
 fireGrabber.retrieve = function (firstNode, secondNode) {
-  var database = firebase.database();
-  var info = [];
-  return firebase.database().ref(firstNode).once('value').then(function(snapshot) {
-   snapshot.forEach(function(childSnapshot) {
-    var key = childSnapshot.key;
-      firebase.database().ref(secondNode).child(key).once('value').then(function(snapshot) {
-       var infoObject = snapshot.val();
-       if (infoObject) {
-         info.push(infoObject);
-       }
+  return new Promise((resolve, reject) => {
+    var database = firebase.database();
+    var info = [];
+    return firebase.database().ref(firstNode).once('value').then(function(snapshot) {
+     snapshot.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+        firebase.database().ref(secondNode).child(key).once('value').then(function(snapshot) {
+         var infoObject = snapshot.val();
+         if (infoObject) {
+           info.push(infoObject);
+         }
+      });
     });
+     resolve(info);
   });
-  return info;
 });
 };
 
 fireGrabber.retrieveWithArr = function(node, arr) {
-  this.node = node;
-  this.arr = arr;
-  var database = firebase.database();
-  var info = [];
-  this.arr.map(function(item) {
-    database.ref(this.node).child(item).once('value').then(function(snapshot) {
-      var infoObject = snapshot.val();
-      if (infoObject) {
-        info.push(infoObject);
-      }
-    });
-  }, this);
-  return info;
+  return new Promise((resolve, reject) => {
+    this.node = node;
+    this.arr = arr;
+    var database = firebase.database();
+    var info = [];
+    this.arr.map(function(item) {
+      database.ref(this.node).child(item).once('value').then(function(snapshot) {
+        var infoObject = snapshot.val();
+        if (infoObject) {
+          info.push(infoObject);
+        }
+      });
+    }, this);
+    resolve(info);
+  });
+
 
 }
 
