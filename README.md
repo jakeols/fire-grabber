@@ -28,6 +28,15 @@ information for all team members stored under `/Users/{uid}`. You would pass `/t
     // returns all the user info from the list of member keys
     console.log(data);
     });
+    
+The `retrieveWithArr` method also accepts two arguments, one being an array of firebase keys, and the second being a valid firebase path. This is useful if you already have an array of keys that correspond to data stored in another path. <br><br>
+<b>Example:</b><br>
+
+    fireGrabber.retrieveWithArr('/teams/12345/members', [10,20,30,40]).then((data) => {
+      // returns all the user info from the array of user keys
+      console.log(data);
+    });
+
 
 ## Tests
 
